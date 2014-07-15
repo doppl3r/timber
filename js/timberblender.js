@@ -94,11 +94,9 @@ function timberblender(){
 	}
 	// Draw everything
 	function render() {
-		ctx.fillStyle = "black";
-		ctx.fillRect(0,0, canvas.width, canvas.height);
+		ctx.clearRect (0,0, canvas.width, canvas.height);
 		slider1.draw();
 		slider2.draw();
-		//ctx.globalAlpha = 1.0;
 	};
 	// The system loop
 	function main() {
