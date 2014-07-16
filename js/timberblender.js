@@ -22,11 +22,10 @@ function timberblender(){
 	sliderBar4.src = "images/slider-bar4.png";
 	
 	
-if(e.target.tagName!="TEXTAREA")e.preventDefault();
 	
 	addEventListener("mousedown", function (e) {e.preventDefault();checkXY(e);down();return false;},false);
-	addEventListener("mousemove", function (e) {e.preventDefault();checkXY(e);move();return false;},false);
-	addEventListener("touchmove", function (e) {if(e.target.tagName!="TEXTAREA")e.preventDefault();checkXY(e);move();return false;},false);
+	//addEventListener("mousemove", function (e) {e.preventDefault();checkXY(e);move();return false;},false);
+	addEventListener("touchmove", function (e) {e.preventDefault();checkXY(e);move();return false;},false);
 	addEventListener("mouseup", function (e) {e.preventDefault();checkXY(e);up();return false;},false);
 	function checkXY(event){
 		//set x and y click
