@@ -26,8 +26,7 @@ function timberblender(){
 	//canvas.addEventListener("mousemove", function (e) {e.preventDefault();checkXY(e);move();return false;},false);
 	//canvas.addEventListener("touchmove", function (e) {e.preventDefault();checkXY(e);move();return false;},false);
 	canvas.addEventListener("mouseup", function (e) {e.preventDefault();checkXY(e);up();return false;},false);
-	canvas.addEventListener("touchmove", function(e){if(navigator.userAgent.match(/Android/i))e.preventDefault();move();},false);
-	function onStart ( touchEvent ){}
+	canvas.addEventListener("touchmove", function(e){e.preventDefault();move();alert("hey");},false);
 	
 	
 	function checkXY(event){
