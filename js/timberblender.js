@@ -24,9 +24,11 @@ function timberblender(){
 	//listeners
 	
 	addEventListener("mousedown", function (e) {e.preventDefault();checkXY(e);down();return false;},false);
-	//addEventListener("mousemove", function (e) {e.preventDefault();checkXY(e);move();return false;},false);
+	addEventListener("touchstart", function (e) {e.preventDefault();checkXY(e);down();return false;},false);
+	addEventListener("mousemove", function (e) {e.preventDefault();checkXY(e);move();return false;},false);
 	addEventListener("touchmove", function (e) {e.preventDefault();checkXY(e);move();return false;},false);
 	addEventListener("mouseup", function (e) {e.preventDefault();checkXY(e);up();return false;},false);
+	addEventListener("touchend", function (e) {e.preventDefault();checkXY(e);up();return false;},false);
 	function checkXY(event){
 		//set x and y click
 		selectX = 0;
