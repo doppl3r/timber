@@ -21,7 +21,7 @@ function timberblender(){
 	sliderBar3.src = "images/slider-bar3.png";
 	sliderBar4.src = "images/slider-bar4.png";
 	
-	
+	//listeners
 	
 	addEventListener("mousedown", function (e) {e.preventDefault();checkXY(e);down();return false;},false);
 	//addEventListener("mousemove", function (e) {e.preventDefault();checkXY(e);move();return false;},false);
