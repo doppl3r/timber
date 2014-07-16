@@ -26,7 +26,7 @@ function timberblender(){
 	//canvas.addEventListener("mousemove", function (e) {e.preventDefault();checkXY(e);move();return false;},false);
 	//canvas.addEventListener("touchmove", function (e) {e.preventDefault();checkXY(e);move();return false;},false);
 	canvas.addEventListener("mouseup", function (e) {e.preventDefault();checkXY(e);up();return false;},false);
-	element.addEventListener( "touchstart", function(e){ onStart(e); }, false );
+	element.addEventListener( "touchmove", function(e){ onStart(e); }, false );
 	function onStart ( touchEvent ) {
 		if( navigator.userAgent.match(/Android/i) ) {
 			move();
