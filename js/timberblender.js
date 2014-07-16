@@ -22,10 +22,10 @@ function timberblender(){
 	sliderBar4.src = "images/slider-bar4.png";
 	
 	//events
-	addEventListener("mousedown", function (e) {e.preventDefault();checkXY(e);down();return false;},false);
-	addEventListener("mousemove", function (e) {e.preventDefault();checkXY(e);move();return false;},false);
-	addEventListener("touchmove", function (e) {e.preventDefault();checkXY(e);move();return false;},false);
-	addEventListener("mouseup", function (e) {e.preventDefault();checkXY(e);up();return false;},false);
+	canvas.addEventListener("mousedown", function (e) {e.preventDefault();checkXY(e);down();return false;},false);
+	canvas.addEventListener("mousemove", function (e) {e.preventDefault();checkXY(e);move();return false;},false);
+	//canvas.addEventListener("touchmove", function (e) {e.preventDefault();checkXY(e);move();return false;},false);
+	canvas.addEventListener("mouseup", function (e) {e.preventDefault();checkXY(e);up();return false;},false);
 	
 	function checkXY(event){
 		//set x and y click
