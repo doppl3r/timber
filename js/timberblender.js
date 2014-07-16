@@ -23,11 +23,9 @@ function timberblender(){
 	
 	//events
 	canvas.addEventListener("mousedown", function (e) {e.preventDefault();checkXY(e);down();return false;},false);
-	//canvas.addEventListener("mousemove", function (e) {e.preventDefault();checkXY(e);move();return false;},false);
-	//canvas.addEventListener("touchmove", function (e) {e.preventDefault();checkXY(e);move();return false;},false);
+	canvas.addEventListener("mousemove", function (e) {e.preventDefault();checkXY(e);move();return false;},false);
+	canvas.addEventListener("touchmove", function (e) {e.preventDefault();checkXY(e);move();alert("hey");return false;},false);
 	canvas.addEventListener("mouseup", function (e) {e.preventDefault();checkXY(e);up();return false;},false);
-	canvas.addEventListener("touchmove", function(e){e.preventDefault();move();alert("hey");},false);
-	
 	
 	function checkXY(event){
 		//set x and y click
