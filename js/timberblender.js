@@ -15,11 +15,13 @@ function timberblender(){
 	var sliderBar2 = new Image();
 	var sliderBar3 = new Image();
 	var sliderBar4 = new Image();
-	sliderButton.src = "images/slider-button.png";
-	sliderBar1.src = "images/slider-bar1.png";
-	sliderBar2.src = "images/slider-bar2.png";
-	sliderBar3.src = "images/slider-bar3.png";
-	sliderBar4.src = "images/slider-bar4.png";
+	var background = new Image();
+	sliderButton.src = "img/timber/slider-button.png";
+	sliderBar1.src = "img/timber/slider-bar1.png";
+	sliderBar2.src = "img/timber/slider-bar2.png";
+	sliderBar3.src = "img/timber/slider-bar3.png";
+	sliderBar4.src = "img/timber/slider-bar4.png";
+	background.src = "img/timber/background.jpg";
 
 	//desktop events
 	canvas.addEventListener("mousedown", function (e) {e.preventDefault();checkXY(e,false);down();return false;},false);
@@ -28,16 +30,13 @@ function timberblender(){
 	//mobile events
 	canvas.addEventListener("touchstart", function (e) {e.preventDefault();checkXY(e,true);down();return false;},false);
 	canvas.addEventListener("touchmove", function (e) {e.preventDefault();checkXY(e,true);move();return false;},false);
-	canvas.addEventListener("touchend", function (e) {e.preventDefault();checkXY(e,true);up();return false;},false);
-	canvas.addEventListener("touchleave", function (e) {e.preventDefault();checkXY(e,true);up();return false;},false);
-	canvas.addEventListener("touchcancel", function (e) {e.preventDefault();checkXY(e,true);up();return false;},false);
 	
 	function checkXY(event,mobile){
 		//set x and y click
 		selectX = 0;
 		selectY = 0;
 		if (mobile) {
-			selectX = event.touches[0].pageX;
+			selectX = event.touches[0].pageX-16;
 			selectY = event.touches[0].pageY;
 			//alert("selectX:"+selectX);
 		}
@@ -107,9 +106,19 @@ function timberblender(){
 	// Draw everything
 	function render() {
 		ctx.clearRect (0,0, canvas.width, canvas.height);
-		//ctx.fillStyle = "blue";
-		//ctx.font = "bold 16px Arial";
-		//ctx.fillText("x:"+selectX+",y:"+selectY+" selected:"+slider1.selected, 0, 16);
+		ctx.globalCompositeOperation = "overlay";
+		ctx.drawImage(background,0,0,canvas.width, canvas.height);
+		//warm or cold
+		ctx.fillStyle = slider2.value < .5 ?
+			"rgba(50,0,0,"+(Math.abs((slider2.value)-.5))+")" :
+			"rgba(0,0,50,"+(Math.abs((slider2.value)-.5))+")";
+		ctx.fillRect(0,0,canvas.width,canvas.height);
+		//brightness
+		ctx.fillStyle = slider1.value < .5 ?
+			"rgba(0,0,0,"+(Math.abs((slider1.value)-.5))+")" :
+			"rgba(255,255,255,"+(Math.abs((slider1.value)-.5))+")";
+		ctx.fillRect(0,0,canvas.width,canvas.height);
+		ctx.globalCompositeOperation = "source-over";
 		slider1.draw();
 		slider2.draw();
 	};
