@@ -20,29 +20,41 @@ function timberblender(){
 	sliderBar2.src = "images/slider-bar2.png";
 	sliderBar3.src = "images/slider-bar3.png";
 	sliderBar4.src = "images/slider-bar4.png";
+
+	//desktop events
+	canvas.addEventListener("mousedown", function (e) {e.preventDefault();checkXY(e,false);down();return false;},false);
+	canvas.addEventListener("mousemove", function (e) {e.preventDefault();checkXY(e,false);move();return false;},false);
+	canvas.addEventListener("mouseup", function (e) {e.preventDefault();checkXY(e,false);up();return false;},false);
+	//mobile events
+	canvas.addEventListener("touchstart", function (e) {e.preventDefault();checkXY(e,true);down();return false;},false);
+	canvas.addEventListener("touchmove", function (e) {e.preventDefault();checkXY(e,true);move();return false;},false);
+	canvas.addEventListener("touchend", function (e) {e.preventDefault();checkXY(e,true);up();return false;},false);
+	canvas.addEventListener("touchleave", function (e) {e.preventDefault();checkXY(e,true);up();return false;},false);
+	canvas.addEventListener("touchcancel", function (e) {e.preventDefault();checkXY(e,true);up();return false;},false);
 	
-	//events
-	canvas.addEventListener("mousedown", function (e) {e.preventDefault();checkXY(e);down();return false;},false);
-	canvas.addEventListener("mousemove", function (e) {e.preventDefault();checkXY(e);move();return false;},false);
-	canvas.addEventListener("touchmove", function (e) {e.preventDefault();checkXY(e);move();alert("hey");return false;},false);
-	canvas.addEventListener("mouseup", function (e) {e.preventDefault();checkXY(e);up();return false;},false);
-	
-	function checkXY(event){
+	function checkXY(event,mobile){
 		//set x and y click
 		selectX = 0;
 		selectY = 0;
-		if (event.x != undefined && event.y != undefined){
-			selectX = event.x;
-			selectY = event.y + window.pageYOffset;
+		if (mobile) {
+			selectX = event.touches[0].pageX;
+			selectY = event.touches[0].pageY;
+			//alert("selectX:"+selectX);
 		}
-		else{ //fix mozilla issue
-			selectX = event.clientX + document.body.scrollLeft +
-				document.documentElement.scrollLeft;
-			selectY = event.clientY + document.body.scrollTop +
-				document.documentElement.scrollTop;
+		else{
+			if (event.x != undefined && event.y != undefined){
+				selectX = event.x;
+				selectY = event.y + window.pageYOffset;
+			}
+			else{ //fix mozilla issue
+				selectX = event.clientX + document.body.scrollLeft +
+					document.documentElement.scrollLeft;
+				selectY = event.clientY + document.body.scrollTop +
+					document.documentElement.scrollTop;
+			}
+			selectX -= canvas.offsetLeft;
+			selectY -= canvas.offsetTop;
 		}
-		selectX -= canvas.offsetLeft;
-		selectY -= canvas.offsetTop;
 	}
 	
 	function down(){ slider1.select(); slider2.select(); }
@@ -95,6 +107,9 @@ function timberblender(){
 	// Draw everything
 	function render() {
 		ctx.clearRect (0,0, canvas.width, canvas.height);
+		//ctx.fillStyle = "blue";
+		//ctx.font = "bold 16px Arial";
+		//ctx.fillText("x:"+selectX+",y:"+selectY+" selected:"+slider1.selected, 0, 16);
 		slider1.draw();
 		slider2.draw();
 	};
