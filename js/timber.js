@@ -40,10 +40,11 @@ function timber(){
 			selectX = event.touches[0].pageX-16;
 			selectY = event.touches[0].pageY;
 			selectX -= canvas.offsetLeft;
-			//USE THIS IF NOT USING skrollr.js
+			//USE THIS IF USING skrollr.js
+			if (typeof s === 'undefined') {	selectY -= canvas.offsetTop; }
+			else selectY -= canvas.offsetTop - s.getScrollTop();
+			//ELSE, USE THIS IF NOT USING skrollr.js
 			//selectY -= canvas.offsetTop;
-			//IF YOU ARE USING skrollr.js, use this
-			selectY -= canvas.offsetTop - s.getScrollTop();
 		}
 		else{
 			if (event.x != undefined && event.y != undefined){
