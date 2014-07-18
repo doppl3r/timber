@@ -8,7 +8,7 @@ Installation
 --------------
 This part is simple, just include your script
 ```sh
-<script type="text/javascript" src="js/timberblender.js"></script>
+<script type="text/javascript" src="js/timber.js"></script>
 ```
 After that, just pop in your id for any element
 ```sh
