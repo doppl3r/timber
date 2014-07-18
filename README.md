@@ -27,4 +27,4 @@ image directory: "img/timber-assets/<yourimage.jpg>"
 	timber.setBackground("natural.jpg");
 </script>
 ```
-(c) [doppl3r.com](https://doppl3r.com)
+(c) [doppl3r.com](http://doppl3r.com)
