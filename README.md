@@ -1,7 +1,7 @@
-TimberBlender
+Timber
 =========
 
-TimberBlender is a super cool texture changing software built on top of Canvas. It's super small and doesn't rely on jQuery.
+Timber is a super cool texture changing software built on top of Canvas. It's super small and doesn't rely on jQuery.
 
 
 Installation
