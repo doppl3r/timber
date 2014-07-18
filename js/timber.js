@@ -16,12 +16,22 @@ function timber(){
 	var sliderBar2 = new Image();
 	var sliderBar3 = new Image();
 	var sliderBar4 = new Image();
+	//icons
+	var icon1 = new Image();
+	var icon2 = new Image();
+	var icon3 = new Image();
+	var icon4 = new Image();
+	//background
 	var background = new Image();
 	sliderButton.src = dir+"slider-button.png";
 	sliderBar1.src = dir+"slider-bar1.png";
 	sliderBar2.src = dir+"slider-bar2.png";
 	sliderBar3.src = dir+"slider-bar3.png";
 	sliderBar4.src = dir+"slider-bar4.png";
+	icon1.src = dir+"darker.png";
+	icon2.src = dir+"lighter.png";
+	icon3.src = dir+"warmer.png";
+	icon4.src = dir+"cooler.png";
 	background.src = dir+"background.jpg";
 
 	//desktop events
@@ -37,7 +47,7 @@ function timber(){
 		selectX = 0;
 		selectY = 0;
 		if (mobile) {
-			selectX = event.touches[0].pageX-16;
+			selectX = event.touches[0].pageX;
 			selectY = event.touches[0].pageY;
 			selectX -= canvas.offsetLeft;
 			//USE THIS IF USING skrollr.js
@@ -73,13 +83,14 @@ function timber(){
 		this.value=0.5; //50%
 		this.width=16;
 		this.height=32;
+		this.padding=12; //easier to grab
 		this.selected=false;
 		//define nested functions
 		Slider.prototype.setMargin = function(m){ this.m=m; }
 		Slider.prototype.setY = function(y){ this.y=y; }
 		Slider.prototype.select = function(){
-			if (selectX > this.a && selectX < this.b && //just bar: Math.abs(selectX-(this.a+(this.b-this.a)*this.value)) <= this.width/2
-			Math.abs(selectY-(this.y)) <=this.height/2) {this.selected = true; this.move();}
+			if (selectX > (this.a-sliderBar1.width) && selectX < (this.b+sliderBar4.width) && //just bar: Math.abs(selectX-(this.a+(this.b-this.a)*this.value)) <= this.width/2
+			selectY > (this.y-this.padding) && selectY < (this.y+sliderBar4.height+this.padding)) {this.selected = true; this.move();}
 			else this.selected = false;
 		}
 		Slider.prototype.release = function(){ this.selected=false; }
@@ -96,12 +107,12 @@ function timber(){
 		}
 		Slider.prototype.draw = function(){
 			//draw slider bar
-			ctx.drawImage(sliderBar1,this.a-4,this.y-4);
-			ctx.drawImage(sliderBar2,this.a,this.y-4,(this.b-this.a)*this.value,8);
-			ctx.drawImage(sliderBar3,this.a+(this.b-this.a)*this.value,this.y-4,(this.b-this.a)*(1-this.value),8);
-			ctx.drawImage(sliderBar4,this.b,this.y-4);
+			ctx.drawImage(sliderBar1,this.a-sliderBar1.width,this.y); //left-end
+			ctx.drawImage(sliderBar2,this.a,this.y,(this.b-this.a)*this.value,sliderBar2.height); //left
+			ctx.drawImage(sliderBar3,this.a+(this.b-this.a)*this.value,this.y,(this.b-this.a)*(1-this.value),sliderBar3.height); //right
+			ctx.drawImage(sliderBar4,this.b,this.y); //right-end
 			//draw slider
-			ctx.drawImage(sliderButton, this.a+(this.b-this.a)*this.value-this.width/2, this.y-this.height/2);
+			ctx.drawImage(sliderButton, (this.a+((this.b-this.a)*this.value))-(this.width/2)-2, this.y);
 		}
 		this.update();
 	}
@@ -125,6 +136,12 @@ function timber(){
 			"rgba(255,255,255,"+(Math.abs((slider1.value)-.5)*1)+")";
 		ctx.fillRect(0,0,canvas.width,canvas.height);
 		ctx.globalCompositeOperation = "source-over";
+		//draw icons first
+		ctx.drawImage(icon1, slider1.a-48, slider1.y-6);
+		ctx.drawImage(icon2, slider1.b+16, slider1.y-6);
+		ctx.drawImage(icon3, slider2.a-48, slider2.y-6);
+		ctx.drawImage(icon4, slider2.b+16, slider2.y-6);
+		//draw sliders for icons
 		slider1.draw();
 		slider2.draw();
 	};
