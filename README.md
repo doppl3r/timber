@@ -15,3 +15,16 @@ After that, just pop in your id for any element
 <div id="timber"></div>
 ```
 You are now ready to have a fully-functional, highly responsive slider tool! Enjoy!
+
+Customize
+--------------
+Want to change the background? POW! That easy!
+```sh
+image directory: "img/timber-assets/<yourimage.jpg>"
+```
+```sh
+<script>
+	timber.setBackground("natural.jpg");
+</script>
+```
+(c) [doppl3r.com](https://doppl3r.com)
